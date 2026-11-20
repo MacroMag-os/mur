@@ -1,0 +1,32 @@
+name: Auto-Update MUR Index
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'packages/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate index.json
+        run: |
+          python3 -c '
+          import os, json, glob
+          pkgs = []
+          for f in sorted(glob.glob("packages/*/manifest.json")):
+              with open(f) as fp:
+                  pkgs.append(json.load(fp))
+          with open("index.json", "w") as out:
+              json.dump({"packages": pkgs}, out, indent=2)
+          '
+      - name: Commit updated index.json
+        run: |
+          git config user.name "MUR Bot"
+          git config user.email "bot@macromag-os.github.io"
+          git add index.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update MUR index" && git push)
