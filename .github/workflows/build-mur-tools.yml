@@ -1,0 +1,34 @@
+name: Build MUR Tools Branch
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-tools:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build pkg-config musl-tools curl tar gzip xz-utils bzip2 unzip python3
+
+      - name: Run collect.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 collect.py
+
+      - name: Push binaries to mur-tools branch
+        run: |
+          cd mur_tools_out
+          git init
+          git checkout -b mur-tools
+          git config user.name "MUR Builder"
+          git config user.email "bot@macromag-os.github.io"
+          git add .
+          git commit -m "Host 50 static binaries in mur-tools"
+          git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@://github.com{{ github.repository }}.git"
+          git push -f origin mur-tools
