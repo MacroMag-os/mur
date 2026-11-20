@@ -1,0 +1,8 @@
+{
+  "name": "fastfetch",
+  "version": "1.0-macromag",
+  "description": "System info z oficjalnym logo MacroMag OS",
+  "url": "https://github.com/macromag-os/Macromag-32",
+  "bin": "fastfetch",
+  "auto_install": true
+}
