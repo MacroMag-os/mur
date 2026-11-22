@@ -27,7 +27,7 @@ version=1.7.1
 arch=x86_64
 license=MIT
 description=Lightweight and flexible command-line JSON processor
-url=https://github.com
+url=https://github.com/Macromag-os/mur
 bin=jq
 sha256=5942c9b0934f2a0ee22b87722805b359e6003c3db7f536ae6f5cd175e8cbd348
 ```
