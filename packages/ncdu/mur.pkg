@@ -1,0 +1,7 @@
+name=ncdu
+version=1.19
+arch=x86_64
+license=MIT
+description=NCurses disk usage analyzer written in C
+url=https://github.com
+bin=ncdu

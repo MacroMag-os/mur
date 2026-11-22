@@ -1,0 +1,7 @@
+name=tcpdump
+version=4.99.4
+arch=x86_64
+license=BSD-3-Clause
+description=Network packet analyzer written in C
+url=https://github.com
+bin=tcpdump

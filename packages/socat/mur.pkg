@@ -1,0 +1,7 @@
+name=socat
+version=1.8.0.0
+arch=x86_64
+license=GPL-2.0
+description=Multipurpose relay tool written in C
+url=https://github.com
+bin=socat
