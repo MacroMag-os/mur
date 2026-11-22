@@ -1,0 +1,7 @@
+name=curl
+version=8.7.1
+arch=x86_64
+license=MIT
+description=Command-line tool for transferring data with URLs
+url=https://github.com/moparisthebest/static-curl/releases/latest/download/curl-amd64
+bin=curl

@@ -1,0 +1,7 @@
+name=doas
+version=6.8.2
+arch=x86_64
+license=ISC
+description=Lightweight alternative to sudo for executing commands as another user
+url=https://github.com/ryanwoodsmall/static-binaries-x86_64/raw/master/bin/doas
+bin=doas
