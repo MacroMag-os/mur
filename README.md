@@ -3,6 +3,55 @@
 **MUR (MacroMag User Repository)** is the official, community-driven package ecosystem for **MacroMag OS**. Inspired by the Arch User Repository (AUR), MUR replaces fragile Bash build scripts with clean, declarative package manifests (`mur.pkg`) designed for deterministic, zero-telemetry execution on `x86_64` and `RISC-V` architectures.
 
 ---
+## How to Add New Tools to MUR
+
+Because MacroMag OS relies on self-contained, statically linked binaries (compiled with `musl`, Go, or Rust) instead of a legacy GNU userland, packages are structured as simple manifest files pointing directly to raw executables.
+
+### Step 1: Create a Package Directory
+
+Create a directory under `packages/` named after your tool, containing a `mur.pkg` manifest file:
+
+```text
+packages/
+└── <package-name>/
+    └── mur.pkg
+```
+
+### Step 2: Write the `mur.pkg` Manifest
+
+The `url` field must point directly to a raw, executable binary rather than an archive format like `.tar.gz` or `.zip`.
+
+```ini
+name=jq
+version=1.7.1
+arch=x86_64
+license=MIT
+description=Lightweight and flexible command-line JSON processor
+url=https://github.com
+bin=jq
+sha256=5942c9b0934f2a0ee22b87722805b359e6003c3db7f536ae6f5cd175e8cbd348
+```
+
+#### Manifest Reference
+
+* **`name`** / **`version`** / **`arch`**: Package identifier, upstream version, and target architecture (`x86_64` or `riscv64`).
+* **`license`** / **`description`**: SPDX identifier and a short summary.
+* **`url`** / **`bin`**: Direct HTTPS link to the static binary and its installed filename in `/usr/bin/`.
+* **`sha256`**: Optional checksum verified automatically during installation.
+
+### Step 3: Sync and Install
+
+After committing your package or opening a PR, the repository index updates automatically. On your MacroMag OS machine, run:
+
+```bash
+mur sync
+mur install <package-name>
+```
+
+### Where to Find Compatible Static Binaries (`x86_64`)
+
+Look for `static`, `musl`, or standalone Go/Rust releases from official project repositories (such as `jq`, `ripgrep`, `fzf`, and `age`) or curated static binary collections like `moparisthebest/static-curl` and `ryanwoodsmall/static-binaries`.
+
 
 ## Usage on MacroMag OS
 
