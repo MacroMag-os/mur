@@ -1,9 +1,14 @@
-name: Auto-Update MUR Index
+
+name: Update MUR Index
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
     paths:
       - 'packages/**'
+      - 'collect.rs'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,21 +17,21 @@ jobs:
   build-index:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Generate index.json
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run collect.rs to regenerate index.json
+        run: cargo run --release
+
+      - name: Commit and push updated index.json
         run: |
-          python3 -c '
-          import os, json, glob
-          pkgs = []
-          for f in sorted(glob.glob("packages/*/manifest.json")):
-              with open(f) as fp:
-                  pkgs.append(json.load(fp))
-          with open("index.json", "w") as out:
-              json.dump({"packages": pkgs}, out, indent=2)
-          '
-      - name: Commit updated index.json
-        run: |
-          git config user.name "MUR Bot"
-          git config user.email "bot@macromag-os.github.io"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add index.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update MUR index" && git push)
+          git diff --staged --quiet || (git commit -m "chore: update index.json" && git push)
+
+
+
