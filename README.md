@@ -107,6 +107,6 @@ bin=curl
 ```
 
 ### Step 3: Update the Repository Index & Submit
-1. Run `python3 collect.rs` (or let the GitHub Actions workflow run automatically on push) to regenerate `index.json`.
+1. Run `rust collect.rs` (or let the GitHub Actions workflow run automatically on push) to regenerate `index.json`.
 2. Open a Pull Request to `MacroMag-os/mur`.
 3. Once merged, any MacroMag OS user can run `mur sync` followed by `mur install <package-name>`.
