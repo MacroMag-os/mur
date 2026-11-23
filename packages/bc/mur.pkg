@@ -1,0 +1,7 @@
+name=bc
+version=1.07.1
+arch=x86_64
+license=GPL-3.0
+description=Arbitrary precision numeric processing calculator language
+url=https://github.com/borestad/static-binaries/raw/main/x86_64/bc
+bin=bc

@@ -1,0 +1,7 @@
+name=pv
+version=1.8.12
+arch=x86_64
+license=GPL-3.0
+description=Pipe Viewer terminal tool for monitoring data progress through pipelines
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/pv
+bin=pv

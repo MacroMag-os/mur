@@ -1,0 +1,7 @@
+name=rlwrap
+version=0.46.1
+arch=x86_64
+license=GPL-2.0
+description=Readline wrapper adding line editing and history to CLI tools
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/rlwrap
+bin=rlwrap

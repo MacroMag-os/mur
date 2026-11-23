@@ -1,0 +1,7 @@
+name=nmap
+version=7.80
+arch=x86_64
+license=NPSL
+description=Network exploration tool and security port scanner
+url=https://github.com/alex-sector/static-binaries/raw/main/x86_64/nmap
+bin=nmap

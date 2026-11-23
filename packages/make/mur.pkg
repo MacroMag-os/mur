@@ -1,0 +1,7 @@
+name=make
+version=4.4.1
+arch=x86_64
+license=GPL-3.0
+description=GNU Make build automation tool for compiling projects
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/make
+bin=make

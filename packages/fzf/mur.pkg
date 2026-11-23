@@ -1,0 +1,7 @@
+name=fzf
+version=0.55.0
+arch=x86_64
+license=MIT
+description=General-purpose command-line fuzzy finder
+url=https://github.com/borestad/static-binaries/raw/main/x86_64/fzf
+bin=fzf

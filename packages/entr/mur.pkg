@@ -1,0 +1,7 @@
+name=entr
+version=5.6
+arch=x86_64
+license=ISC
+description=Run arbitrary commands when files change
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/entr
+bin=entr

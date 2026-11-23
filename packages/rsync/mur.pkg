@@ -1,0 +1,7 @@
+name=rsync
+version=3.3.0
+arch=x86_64
+license=GPL-3.0
+description=Fast incremental file transfer and synchronization utility
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/rsync
+bin=rsync

@@ -1,0 +1,7 @@
+name=vim
+version=9.1
+arch=x86_64
+license=ISC
+description=Lightweight modal text editor (neatvi static build)
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/neatvi
+bin=vim

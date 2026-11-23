@@ -1,0 +1,7 @@
+name=aria2c
+version=1.37.0
+arch=x86_64
+license=GPL-2.0
+description=Lightweight multi-protocol command-line download utility
+url=https://github.com/borestad/static-binaries/raw/main/x86_64/aria2c
+bin=aria2c

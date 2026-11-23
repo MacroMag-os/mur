@@ -1,0 +1,7 @@
+name=ag
+version=2.2.0
+arch=x86_64
+license=Apache-2.0
+description=The Silver Searcher fast code searching tool
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/ag
+bin=ag

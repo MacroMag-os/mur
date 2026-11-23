@@ -1,0 +1,7 @@
+name=rg
+version=14.1.1
+arch=x86_64
+license=MIT
+description=Recursively searches directories for a regex pattern at blazing speed
+url=https://github.com/borestad/static-binaries/raw/main/x86_64/rg
+bin=rg

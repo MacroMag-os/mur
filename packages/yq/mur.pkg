@@ -1,0 +1,7 @@
+name=yq
+version=4.44.3
+arch=x86_64
+license=MIT
+description=Portable command-line YAML, JSON, and XML processor
+url=https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+bin=yq

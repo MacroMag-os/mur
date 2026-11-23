@@ -1,0 +1,7 @@
+name=bsdtar
+version=3.7.4
+arch=x86_64
+license=BSD-2-Clause
+description=Multi-format archive and compression utility (tar, zip, iso, cpio)
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/bsdtar
+bin=bsdtar

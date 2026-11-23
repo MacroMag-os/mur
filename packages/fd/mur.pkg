@@ -1,0 +1,7 @@
+name=fd
+version=10.2.0
+arch=x86_64
+license=MIT
+description=Simple, fast and user-friendly alternative to find
+url=https://github.com/borestad/static-binaries/raw/main/x86_64/fd
+bin=fd

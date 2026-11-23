@@ -1,0 +1,7 @@
+name=less
+version=643
+arch=x86_64
+license=GPL-3.0
+description=Terminal pager program for viewing text files screen by screen
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/less
+bin=less

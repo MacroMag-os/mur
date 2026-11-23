@@ -1,0 +1,7 @@
+name=nc
+version=1.10
+arch=x86_64
+license=BSD-3-Clause
+description=TCP/IP swiss army knife for network connections
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/nc
+bin=nc

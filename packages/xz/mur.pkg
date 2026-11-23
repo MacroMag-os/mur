@@ -1,0 +1,7 @@
+name=xz
+version=5.6.2
+arch=x86_64
+license=0BSD
+description=General-purpose data compression utility with high compression ratio
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/xz
+bin=xz

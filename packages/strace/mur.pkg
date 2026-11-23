@@ -1,0 +1,7 @@
+name=strace
+version=6.10
+arch=x86_64
+license=LGPL-2.1
+description=Diagnostic and debugging userspace tracer for Linux syscalls
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/strace
+bin=strace
