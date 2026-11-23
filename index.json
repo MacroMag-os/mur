@@ -1,12 +1,36 @@
-{
-  "packages": [
-    {
-      "name": "fastfetch",
-      "version": "1.0-macromag",
-      "description": "System info z oficjalnym logo MacroMag OS",
-      "url": "https://github.com/macromag-os/Macromag-32",
-      "bin": "fastfetch",
-      "auto_install": true
-    }
-  ]
-}
+[
+  {"name":"pv","version":"1.8.12","arch":"x86_64","license":"GPL-3.0","description":"Pipe Viewer terminal tool for monitoring data progress through pipelines","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/pv","bin":"pv"},
+  {"name":"rsync","version":"3.3.0","arch":"x86_64","license":"GPL-3.0","description":"Fast incremental file transfer and synchronization utility","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/rsync","bin":"rsync"},
+  {"name":"fd","version":"10.2.0","arch":"x86_64","license":"MIT","description":"Simple, fast and user-friendly alternative to find","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/fd","bin":"fd"},
+  {"name":"zstd","version":"1.5.6","arch":"x86_64","license":"BSD-3-Clause","description":"Fast lossless compression algorithm targeting real-time scenarios","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/zstd","bin":"zstd"},
+  {"name":"aria2c","version":"1.37.0","arch":"x86_64","license":"GPL-2.0","description":"Lightweight multi-protocol command-line download utility","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/aria2c","bin":"aria2c"},
+  {"name":"socat","version":"1.8.0.0","arch":"x86_64","license":"GPL-2.0","description":"Multipurpose relay for bidirectional data transfer between channels","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/socat","bin":"socat"},
+  {"name":"bsdtar","version":"3.7.4","arch":"x86_64","license":"BSD-2-Clause","description":"Multi-format archive and compression utility (tar, zip, iso, cpio)","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/bsdtar","bin":"bsdtar"},
+  {"name":"nano","version":"7.2","arch":"x86_64","license":"GPL-3.0","description":"Terminal text editor written in C","url":"https://github.com","bin":"nano"},
+  {"name":"patchelf","version":"0.18.0","arch":"x86_64","license":"GPL-3.0","description":"Utility to modify the dynamic linker and RPATH of ELF executables","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/patchelf","bin":"patchelf"},
+  {"name":"yq","version":"4.44.3","arch":"x86_64","license":"MIT","description":"Portable command-line YAML, JSON, and XML processor","url":"https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64","bin":"yq"},
+  {"name":"ripgrep","version":"14.1.1","arch":"x86_64","license":"MIT","description":"Fast line-oriented search tool written in Rust","url":"https://github.com/Macromag-os/mur","bin":"rg","archive":"tar.gz"},
+  {"name":"bat","version":"0.24.0","arch":"x86_64","license":"MIT","description":"Cat clone with syntax highlighting and Git integration","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/bat","bin":"bat"},
+  {"name":"ncdu","version":"1.19","arch":"x86_64","license":"MIT","description":"NCurses disk usage analyzer written in C","url":"https://github.com","bin":"ncdu"},
+  {"name":"vim","version":"9.1","arch":"x86_64","license":"ISC","description":"Lightweight modal text editor (neatvi static build)","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/neatvi","bin":"vim"},
+  {"name":"fzf","version":"0.55.0","arch":"x86_64","license":"MIT","description":"General-purpose command-line fuzzy finder","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/fzf","bin":"fzf"},
+  {"name":"nmap","version":"7.80","arch":"x86_64","license":"NPSL","description":"Network exploration tool and security port scanner","url":"https://github.com/alex-sector/static-binaries/raw/main/x86_64/nmap","bin":"nmap"},
+  {"name":"bc","version":"1.07.1","arch":"x86_64","license":"GPL-3.0","description":"Arbitrary precision numeric processing calculator language","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/bc","bin":"bc"},
+  {"name":"htop","version":"3.3.0","arch":"x86_64","license":"GPL-2.0","description":"Interactive text-mode process viewer and system monitor","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/htop","bin":"htop"},
+  {"name":"strace","version":"6.10","arch":"x86_64","license":"LGPL-2.1","description":"Diagnostic and debugging userspace tracer for Linux syscalls","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/strace","bin":"strace"},
+  {"name":"mlr","version":"6.12.0","arch":"x86_64","license":"BSD-2-Clause","description":"Miller awk, sed, cut, join, and sort for CSV/JSON data","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/mlr","bin":"mlr"},
+  {"name":"doas","version":"6.8.2","arch":"x86_64","license":"ISC","description":"Lightweight alternative to sudo for executing commands as another user","url":"https://github.com/ryanwoodsmall/static-binaries-x86_64/raw/master/bin/doas","bin":"doas"},
+  {"name":"xz","version":"5.6.2","arch":"x86_64","license":"0BSD","description":"General-purpose data compression utility with high compression ratio","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/xz","bin":"xz"},
+  {"name":"tcpdump","version":"4.99.0","arch":"x86_64","license":"BSD-3-Clause","description":"Command-line packet analyzer for network traffic debugging","url":"https://github.com/alex-sector/static-binaries/raw/main/x86_64/tcpdump","bin":"tcpdump"},
+  {"name":"jq","version":"1.8.2","arch":"x86_64","license":"MIT","description":"Lightweight and flexible command-line JSON processor","url":"https://github.com/jqlang/jq/releases/latest/download/jq-linux-amd64","bin":"jq"},
+  {"name":"curl","version":"8.21.0","arch":"x86_64","license":"MIT","description":"Command-line tool for transferring data with URLs","url":"https://github.com/moparisthebest/static-curl/releases/latest/download/curl-amd64","bin":"curl"},
+  {"name":"tmux","version":"3.4","arch":"x86_64","license":"ISC","description":"Terminal multiplexer for managing multiple shell sessions","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/tmux","bin":"tmux"},
+  {"name":"rg","version":"14.1.1","arch":"x86_64","license":"MIT","description":"Recursively searches directories for a regex pattern at blazing speed","url":"https://github.com/borestad/static-binaries/raw/main/x86_64/rg","bin":"rg"},
+  {"name":"less","version":"643","arch":"x86_64","license":"GPL-3.0","description":"Terminal pager program for viewing text files screen by screen","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/less","bin":"less"},
+  {"name":"nc","version":"1.10","arch":"x86_64","license":"BSD-3-Clause","description":"TCP/IP swiss army knife for network connections","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/nc","bin":"nc"},
+  {"name":"make","version":"4.4.1","arch":"x86_64","license":"GPL-3.0","description":"GNU Make build automation tool for compiling projects","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/make","bin":"make"},
+  {"name":"ag","version":"2.2.0","arch":"x86_64","license":"Apache-2.0","description":"The Silver Searcher fast code searching tool","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/ag","bin":"ag"},
+  {"name":"screen","version":"4.9.1","arch":"x86_64","license":"GPL-3.0","description":"Full-screen window manager multiplexing a physical terminal","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/screen","bin":"screen"},
+  {"name":"entr","version":"5.6","arch":"x86_64","license":"ISC","description":"Run arbitrary commands when files change","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/entr","bin":"entr"},
+  {"name":"rlwrap","version":"0.46.1","arch":"x86_64","license":"GPL-2.0","description":"Readline wrapper adding line editing and history to CLI tools","url":"https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/rlwrap","bin":"rlwrap"}
+]
