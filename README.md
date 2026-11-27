@@ -13,6 +13,89 @@
 [![Open Collective](https://img.shields.io/opencollective/all/macromag?label=Open%20Collective)](https://opencollective.com/macromag)
 
 **MUR (MacroMag User Repository)** is the official, community-driven package ecosystem for **MacroMag OS**. Inspired by the Arch User Repository (AUR), MUR replaces fragile Bash build scripts with clean, declarative package manifests (`mur.pkg`) designed for deterministic, zero-telemetry execution on `x86_64` and `arm64` architectures.
+==================================================
+PLIK: README.md
+==================================================
+
+# Mur.pkg - System zarządzania pakietami
+
+Repozytorium zawiera manifesty pakietów dla systemu Mur.pkg.
+
+## Nowy format manifestu
+
+Od teraz każdy manifest wymaga podania pola `source_archive=`. 
+
+Przykład użycia:
+```ini
+[package]
+name = przykladowy-pakiet
+version = 1.0.0
+source_archive = https://example.com
+```
+
+==================================================
+MANIFESTY (10 sztuk)
+==================================================
+
+--- 1. mur-core.pkg ---
+[package]
+name = mur-core
+version = 1.4.2
+source_archive = https://murpkg.org
+
+--- 2. mur-net.pkg ---
+[package]
+name = mur-net
+version = 2.1.0
+source_archive = https://murpkg.org
+
+--- 3. mur-ui.pkg ---
+[package]
+name = mur-ui
+version = 0.9.5
+source_archive = https://murpkg.org
+
+--- 4. mur-db.pkg ---
+[package]
+name = mur-db
+version = 3.0.1
+source_archive = https://murpkg.org
+
+--- 5. mur-auth.pkg ---
+[package]
+name = mur-auth
+version = 1.2.0
+source_archive = https://murpkg.org
+
+--- 6. mur-log.pkg ---
+[package]
+name = mur-log
+version = 1.1.0
+source_archive = https://murpkg.org
+
+--- 7. mur-cli.pkg ---
+[package]
+name = mur-cli
+version = 2.0.0
+source_archive = https://murpkg.org
+
+--- 8. mur-crypto.pkg ---
+[package]
+name = mur-crypto
+version = 1.5.3
+source_archive = https://murpkg.org
+
+--- 9. mur-utils.pkg ---
+[package]
+name = mur-utils
+version = 1.0.4
+source_archive = https://murpkg.org
+
+--- 10. mur-test.pkg ---
+[package]
+name = mur-test
+version = 0.5.0
+source_archive = https://murpkg.org
 
 ---
 ## How to Add New Tools to MUR
