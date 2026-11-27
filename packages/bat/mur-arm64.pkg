@@ -5,3 +5,5 @@ license=MIT
 description=Cat clone with syntax highlighting and Git integration
 source_archive=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-aarch64-unknown-linux-gnu.tar.gz
 bin=bat
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/bat-arm64
+sha256=cdd79a0cb7fa91a454e4a233cf12077ce37be0d0df137f60a75752c4047d3dc3
