@@ -5,3 +5,5 @@ license=BSD-3-Clause
 description=Simple, modern and secure encryption tool
 source_archive=https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-arm64.tar.gz
 bin=age
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/age-arm64
+sha256=92da3edf27811a65a599342d743a13bb50b7f0b07f8947530d4e83249f2e4532

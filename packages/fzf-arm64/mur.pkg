@@ -5,3 +5,5 @@ license=MIT
 description=General-purpose command-line fuzzy finder
 source_archive=https://github.com/junegunn/fzf/releases/download/v0.55.0/fzf-0.55.0-linux_arm64.tar.gz
 bin=fzf
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/fzf-arm64
+sha256=c970b2db46c4cfff644395eb73c7829f20455ea0911247c1406951f6c1ae9d78

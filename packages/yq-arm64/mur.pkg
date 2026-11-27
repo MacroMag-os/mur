@@ -5,3 +5,4 @@ license=MIT
 description=Portable command-line YAML, JSON, XML, CSV and properties processor
 url=https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_arm64
 bin=yq
+sha256=0e7e1524f68d91b3ff9b089872d185940ab0fa020a5a9052046ef10547023156

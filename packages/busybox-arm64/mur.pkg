@@ -5,3 +5,4 @@ license=GPL-2.0
 description=The Swiss Army Knife of Embedded Linux
 url=https://github.com/ryanwoodsmall/static-binaries/raw/master/aarch64/busybox
 bin=busybox
+sha256=a6d4c63578a5b5859fe0b42c5e827d0ca61a9ec156650127f6af4ab2051d931f

@@ -5,3 +5,5 @@ license=MIT
 description=Maintained, feature-rich and performance oriented system information tool
 source_archive=https://github.com/fastfetch-cli/fastfetch/releases/download/2.71.0/fastfetch-linux-aarch64.tar.gz
 bin=fastfetch
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/fastfetch-arm64
+sha256=bf72c88f138d0e8914687805bff8b6d5c35b3958f9475428b2f3833c7f0e2e48
