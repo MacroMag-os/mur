@@ -8,6 +8,10 @@ on:
       - 'collect.rs'
   workflow_dispatch:
 
+concurrency:
+  group: mur-autobuild-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -124,5 +128,5 @@ jobs:
           git add packages/ index.json || true
           if ! git diff --cached --quiet; then
             git commit -m "chore(mur): auto-update checksums, release URLs and index.json [skip ci]"
-            git push
+            git pull --rebase && git push
           fi
