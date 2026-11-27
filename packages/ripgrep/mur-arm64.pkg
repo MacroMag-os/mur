@@ -1,0 +1,7 @@
+name=ripgrep
+version=14.1.1
+arch=arm64
+license=MIT
+description=Fast line-oriented regex search tool written in Rust
+source_archive=https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-aarch64-unknown-linux-gnu.tar.gz
+bin=rg

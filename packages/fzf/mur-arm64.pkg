@@ -1,0 +1,7 @@
+name=fzf
+version=0.55.0
+arch=arm64
+license=MIT
+description=General-purpose command-line fuzzy finder
+source_archive=https://github.com/junegunn/fzf/releases/download/v0.55.0/fzf-0.55.0-linux_arm64.tar.gz
+bin=fzf
