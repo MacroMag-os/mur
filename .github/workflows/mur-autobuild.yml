@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'packages/**'
+      - 'collect.rs'
   workflow_dispatch:
 
 permissions:
@@ -22,11 +23,16 @@ jobs:
       - name: Setup Rust toolchain (for collect.rs)
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Process changed or new mur.pkg manifests
+      - name: Process mur.pkg manifests
         id: builder
         run: |
           mkdir -p dist work
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- 'packages/**/mur*.pkg' || find packages -name 'mur*.pkg')
+
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            CHANGED_FILES=$(find packages -type f -name 'mur*.pkg')
+          else
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- 'packages/**/mur*.pkg' 2>/dev/null || find packages -type f -name 'mur*.pkg')
+          fi
 
           if [ -z "$CHANGED_FILES" ]; then
             echo "Brak zmian w paczkach."
@@ -39,16 +45,11 @@ jobs:
             [ -f "$PKG_FILE" ] || continue
             echo "=== Przetwarzanie: $PKG_FILE ==="
 
-            NAME=$(grep -E '^name=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
-')
-            ARCH=$(grep -E '^arch=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
-')
-            BIN=$(grep -E '^bin=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
-')
-            URL=$(grep -E '^url=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
-')
-            ARCHIVE=$(grep -E '^source_archive=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
-')
+            NAME=$(grep -E '^name=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '\r')
+            ARCH=$(grep -E '^arch=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '\r')
+            BIN=$(grep -E '^bin=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '\r')
+            URL=$(grep -E '^url=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '\r')
+            ARCHIVE=$(grep -E '^source_archive=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '\r')
 
             ARCH=${ARCH:-x86_64}
             TARGET_BIN_NAME="${BIN}-${ARCH}"
@@ -68,9 +69,10 @@ jobs:
                 unzip -q work/archive_file -d work/
               fi
 
-              FOUND_BIN=$(find work -type f -name "$BIN" | head -n 1)
+              FOUND_BIN=$(find work -type f \( -name "$BIN" -o -name "${BIN}-${ARCH}" -o -name "${BIN}_*" \) | head -n 1)
               if [ -z "$FOUND_BIN" ]; then
                 echo "BLAD: Nie znaleziono binarki '$BIN' w archiwum $ARCHIVE"
+                ls -laR work/
                 exit 1
               fi
 
@@ -79,7 +81,6 @@ jobs:
               SHA=$(sha256sum "dist/${TARGET_BIN_NAME}" | awk '{print $1}')
               HAS_UPLOADS=1
 
-              # Automatyczne uzupelnienie lub aktualizacja url= oraz sha256= w mur.pkg
               RELEASE_URL="https://github.com/${{ github.repository }}/releases/download/binaries/${TARGET_BIN_NAME}"
               grep -vE '^(url|sha256)=' "$PKG_FILE" > "${PKG_FILE}.tmp"
               echo "url=${RELEASE_URL}" >> "${PKG_FILE}.tmp"
