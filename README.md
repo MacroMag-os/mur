@@ -13,91 +13,49 @@
 [![Open Collective](https://img.shields.io/opencollective/all/macromag?label=Open%20Collective)](https://opencollective.com/macromag)
 
 **MUR (MacroMag User Repository)** is the official, community-driven package ecosystem for **MacroMag OS**. Inspired by the Arch User Repository (AUR), MUR replaces fragile Bash build scripts with clean, declarative package manifests (`mur.pkg`) designed for deterministic, zero-telemetry execution on `x86_64` and `arm64` architectures.
-==================================================
-PLIK: README.md
-==================================================
 
-# Mur.pkg - System zarządzania pakietami
+# Architectures
 
-Repozytorium zawiera manifesty pakietów dla systemu Mur.pkg.
+## 🖥 x86-64 (PC) 
+## 📱 arm64 (Mobile) 
 
-## Nowy format manifestu
+## How to Add New Tools to MUR (Automated CI/CD)
 
-Od teraz każdy manifest wymaga podania pola `source_archive=`. 
+Because MacroMag OS uses self-contained, statically linked binaries (`musl`, Rust, Go, C) for `x86_64` and `arm64`, adding packages is fully automated via `mur-autobuild.yml`. You only need to provide a `mur.pkg` manifest inside `packages/<package-name>/mur.pkg`.
 
-Przykład użycia:
+### Step 1: Write the `mur.pkg` Manifest
+
+Choose the appropriate format based on how upstream distributes the binary:
+
+* **Option A: Archive (`.tar.gz`, `.tar.xz`, `.zip`)** – Use `source_archive=`; the CI/CD bot extracts the binary, publishes it, and fills in `url=` and `sha256=`.
+* **Option B: Raw Static Binary** – Use `url=`; the bot verifies the executable and appends `sha256=`.
+
+Example manifest structure:
 ```ini
-[package]
-name = przykladowy-pakiet
-version = 1.0.0
-source_archive = https://example.com
+name=ripgrep
+version=16.0.0
+arch=x86_64
+license=MIT
+description=Fast line-oriented regex search tool written in Rust
+source_archive=https://github.com
+bin=rg
 ```
 
-==================================================
-MANIFESTY (10 sztuk)
-==================================================
+**Key Fields:** `name`, `version`, `arch` (`x86_64`/`arm64`), `license`, `description`, `bin` (executable name in `/usr/bin/`), `source_archive`, `url`, and `sha256`.
 
---- 1. mur-core.pkg ---
-[package]
-name = mur-core
-version = 1.4.2
-source_archive = https://murpkg.org
+### Step 2: Submit a Pull Request
 
---- 2. mur-net.pkg ---
-[package]
-name = mur-net
-version = 2.1.0
-source_archive = https://murpkg.org
+1. Submit a PR containing your `packages/<package-name>/mur.pkg` file.
+2. The CI pipeline will automatically process the archive/binary, compute checksums, and update `index.json`.
+3. Users can then install the package:
+```bash
+mur sync
+mur install <package-name>
+```
 
---- 3. mur-ui.pkg ---
-[package]
-name = mur-ui
-version = 0.9.5
-source_archive = https://murpkg.org
 
---- 4. mur-db.pkg ---
-[package]
-name = mur-db
-version = 3.0.1
-source_archive = https://murpkg.org
 
---- 5. mur-auth.pkg ---
-[package]
-name = mur-auth
-version = 1.2.0
-source_archive = https://murpkg.org
 
---- 6. mur-log.pkg ---
-[package]
-name = mur-log
-version = 1.1.0
-source_archive = https://murpkg.org
-
---- 7. mur-cli.pkg ---
-[package]
-name = mur-cli
-version = 2.0.0
-source_archive = https://murpkg.org
-
---- 8. mur-crypto.pkg ---
-[package]
-name = mur-crypto
-version = 1.5.3
-source_archive = https://murpkg.org
-
---- 9. mur-utils.pkg ---
-[package]
-name = mur-utils
-version = 1.0.4
-source_archive = https://murpkg.org
-
---- 10. mur-test.pkg ---
-[package]
-name = mur-test
-version = 0.5.0
-source_archive = https://murpkg.org
-
----
 ## How to Add New Tools to MUR
 
 Because MacroMag OS relies on self-contained, statically linked binaries (compiled with `musl`, Go, or Rust) instead of a legacy GNU userland, packages are structured as simple manifest files pointing directly to raw executables.
