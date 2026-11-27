@@ -1,0 +1,7 @@
+name=sqlite3
+version=3.46.1
+arch=x86_64
+license=blessing
+description=Self-contained, serverless SQL database engine
+url=https://github.com/CompuRoot/static-sqlite3/releases/download/v3.46.1/sqlite3
+bin=sqlite3

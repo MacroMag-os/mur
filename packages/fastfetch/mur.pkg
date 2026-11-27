@@ -1,0 +1,7 @@
+name=fastfetch
+version=2.71.0
+arch=x86_64
+license=MIT
+description=Maintained, feature-rich and performance oriented system information tool
+source_archive=https://github.com/fastfetch-cli/fastfetch/releases/download/2.71.0/fastfetch-linux-amd64.tar.gz
+bin=fastfetch
