@@ -1,0 +1,7 @@
+name=riverdale
+version=16.0.0
+arch=x86_64
+license=MIT
+description=Fast line-oriented regex search tool written in Rust
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/rg-x86_64
+bin=rg
