@@ -1,0 +1,7 @@
+name=busybox
+version=1.36.1
+arch=x86_64
+license=GPL-2.0
+description=The Swiss Army Knife of Embedded Linux (includes wget, unzip, etc.)
+url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/busybox
+bin=busybox

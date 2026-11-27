@@ -1,7 +1,0 @@
-name=wget
-version=1.21.4
-arch=x86_64
-license=GPL-3.0
-description=Network utility to retrieve files from the Web
-url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/wget
-bin=wget

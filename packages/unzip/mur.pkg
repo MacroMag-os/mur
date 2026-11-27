@@ -1,7 +1,0 @@
-name=unzip
-version=6.0
-arch=x86_64
-license=Info-ZIP
-description=List, test and extract compressed files in a ZIP archive
-url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/unzip
-bin=unzip

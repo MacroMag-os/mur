@@ -3,5 +3,5 @@ version=2.45.2
 arch=x86_64
 license=GPL-2.0
 description=Fast, scalable, distributed revision control system
-url=https://github.com/ryanwoodsmall/static-binaries/raw/master/x86_64/git
+source_archive=https://github.com/darkvertex/static-git/releases/latest/download/git-binaries.linux-64bit.tar.gz
 bin=git
