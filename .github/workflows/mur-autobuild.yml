@@ -1,0 +1,127 @@
+name: MUR Universal Package Builder
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'packages/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  process-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Rust toolchain (for collect.rs)
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Process changed or new mur.pkg manifests
+        id: builder
+        run: |
+          mkdir -p dist work
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- 'packages/**/mur*.pkg' || find packages -name 'mur*.pkg')
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "Brak zmian w paczkach."
+            exit 0
+          fi
+
+          HAS_UPLOADS=0
+
+          for PKG_FILE in $CHANGED_FILES; do
+            [ -f "$PKG_FILE" ] || continue
+            echo "=== Przetwarzanie: $PKG_FILE ==="
+
+            NAME=$(grep -E '^name=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
+')
+            ARCH=$(grep -E '^arch=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
+')
+            BIN=$(grep -E '^bin=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
+')
+            URL=$(grep -E '^url=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
+')
+            ARCHIVE=$(grep -E '^source_archive=' "$PKG_FILE" | cut -d'=' -f2- | tr -d '
+')
+
+            ARCH=${ARCH:-x86_64}
+            TARGET_BIN_NAME="${BIN}-${ARCH}"
+
+            rm -rf work/*
+
+            # Scenariusz A: Paczka ma podane source_archive (np. .tar.gz, .tar.xz, .zip)
+            if [ -n "$ARCHIVE" ]; then
+              echo "Pobieranie archiwum: $ARCHIVE"
+              curl -fSL "$ARCHIVE" -o work/archive_file
+
+              if [[ "$ARCHIVE" == *.tar.gz || "$ARCHIVE" == *.tgz ]]; then
+                tar -xzf work/archive_file -C work/
+              elif [[ "$ARCHIVE" == *.tar.xz ]]; then
+                tar -xf work/archive_file -C work/
+              elif [[ "$ARCHIVE" == *.zip ]]; then
+                unzip -q work/archive_file -d work/
+              fi
+
+              FOUND_BIN=$(find work -type f -name "$BIN" | head -n 1)
+              if [ -z "$FOUND_BIN" ]; then
+                echo "BLAD: Nie znaleziono binarki '$BIN' w archiwum $ARCHIVE"
+                exit 1
+              fi
+
+              cp "$FOUND_BIN" "dist/${TARGET_BIN_NAME}"
+              chmod +x "dist/${TARGET_BIN_NAME}"
+              SHA=$(sha256sum "dist/${TARGET_BIN_NAME}" | awk '{print $1}')
+              HAS_UPLOADS=1
+
+              # Automatyczne uzupelnienie lub aktualizacja url= oraz sha256= w mur.pkg
+              RELEASE_URL="https://github.com/${{ github.repository }}/releases/download/binaries/${TARGET_BIN_NAME}"
+              grep -vE '^(url|sha256)=' "$PKG_FILE" > "${PKG_FILE}.tmp"
+              echo "url=${RELEASE_URL}" >> "${PKG_FILE}.tmp"
+              echo "sha256=${SHA}" >> "${PKG_FILE}.tmp"
+              mv "${PKG_FILE}.tmp" "$PKG_FILE"
+
+            # Scenariusz B: Paczka wskazuje bezposrednio na surowa binarke w url=
+            elif [ -n "$URL" ]; then
+              echo "Weryfikacja bezposredniego pliku: $URL"
+              curl -fSL "$URL" -o "work/${TARGET_BIN_NAME}"
+              SHA=$(sha256sum "work/${TARGET_BIN_NAME}" | awk '{print $1}')
+
+              grep -vE '^sha256=' "$PKG_FILE" > "${PKG_FILE}.tmp"
+              echo "sha256=${SHA}" >> "${PKG_FILE}.tmp"
+              mv "${PKG_FILE}.tmp" "$PKG_FILE"
+            fi
+          done
+
+          echo "has_uploads=$HAS_UPLOADS" >> $GITHUB_OUTPUT
+
+      - name: Upload extracted binaries to GitHub Release
+        if: steps.builder.outputs.has_uploads == '1'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: binaries
+          name: "MUR Static Binaries (x86_64 & arm64)"
+          files: dist/*
+
+      - name: Regenerate index.json using collect.rs
+        run: |
+          if [ -f "collect.rs" ]; then
+            rustc collect.rs -o collect_bin
+            ./collect_bin
+            rm -f collect_bin
+          fi
+
+      - name: Commit updated manifests and index.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add packages/ index.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(mur): auto-update checksums, release URLs and index.json [skip ci]"
+            git push
+          fi
