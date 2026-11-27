@@ -12,7 +12,7 @@
 [![Last Commit](https://img.shields.io/github/last-commit/MacroMag-os/MacroMag-32)](https://github.com/MacroMag-os/MacroMag-32/commits/main)
 [![Open Collective](https://img.shields.io/opencollective/all/macromag?label=Open%20Collective)](https://opencollective.com/macromag)
 
-**MUR (MacroMag User Repository)** is the official, community-driven package ecosystem for **MacroMag OS**. Inspired by the Arch User Repository (AUR), MUR replaces fragile Bash build scripts with clean, declarative package manifests (`mur.pkg`) designed for deterministic, zero-telemetry execution on `x86_64` and `RISC-V` architectures.
+**MUR (MacroMag User Repository)** is the official, community-driven package ecosystem for **MacroMag OS**. Inspired by the Arch User Repository (AUR), MUR replaces fragile Bash build scripts with clean, declarative package manifests (`mur.pkg`) designed for deterministic, zero-telemetry execution on `x86_64` and `arm64` architectures.
 
 ---
 ## How to Add New Tools to MUR
@@ -46,7 +46,7 @@ sha256=5942c9b0934f2a0ee22b87722805b359e6003c3db7f536ae6f5cd175e8cbd348
 
 #### Manifest Reference
 
-* **`name`** / **`version`** / **`arch`**: Package identifier, upstream version, and target architecture (`x86_64` or `riscv64`).
+* **`name`** / **`version`** / **`arch`**: Package identifier, upstream version, and target architecture (`x86_64` or `arm64`).
 * **`license`** / **`description`**: SPDX identifier and a short summary.
 * **`url`** / **`bin`**: Direct HTTPS link to the static binary and its installed filename in `/usr/bin/`.
 * **`sha256`**: Optional checksum verified automatically during installation.
