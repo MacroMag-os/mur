@@ -1,0 +1,7 @@
+name=dropbear
+version=2026.94
+arch=x86_64
+license=MIT
+description=Lightweight standalone SSH server (musl static)
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/dropbear-x86_64
+bin=dropbear
