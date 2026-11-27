@@ -1,0 +1,8 @@
+name=micro
+version=2.0.15
+arch=x86_64
+license=MIT
+description=Modern and intuitive terminal-based text editor
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/micro-x86_64
+bin=micro
+
