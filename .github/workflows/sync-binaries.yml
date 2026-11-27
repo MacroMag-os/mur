@@ -1,0 +1,69 @@
+
+name: Sync Static Binaries to Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-binaries:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download and extract static binaries (x86_64 & arm64)
+        run: |
+          mkdir -p dist tmp
+          cd tmp
+
+          # 1. Dropbear SSH (serwer + klient w jednej statycznej binarce musl)
+          curl -sL "https://github.com/sagemathinc/dropbear/releases/latest/download/dropbear-x86_64-linux-musl.tar.xz" -o db-x64.tar.xz
+          tar -xf db-x64.tar.xz
+          cp dropbear-*/dropbear ../dist/dropbear-x86_64
+          cp dropbear-*/dbclient ../dist/dbclient-x86_64
+          rm -rf dropbear-* db-x64.tar.xz
+
+          curl -sL "https://github.com/sagemathinc/dropbear/releases/latest/download/dropbear-aarch64-linux-musl.tar.xz" -o db-arm.tar.xz
+          tar -xf db-arm.tar.xz
+          cp dropbear-*/dropbear ../dist/dropbear-arm64
+          cp dropbear-*/dbclient ../dist/dbclient-arm64
+          rm -rf dropbear-* db-arm.tar.xz
+
+          # 2. Micro (edytor tekstu w Go - statyczne binarki)
+          MICRO_VER="2.0.15"
+          curl -sL "https://github.com/micro-editor/micro/releases/download/v${MICRO_VER}/micro-${MICRO_VER}-linux64-static.tar.gz" -o micro-x64.tar.gz
+          tar -xzf micro-x64.tar.gz
+          cp micro-${MICRO_VER}/micro ../dist/micro-x86_64
+          rm -rf micro-*
+
+          curl -sL "https://github.com/micro-editor/micro/releases/download/v${MICRO_VER}/micro-${MICRO_VER}-linux-arm64.tar.gz" -o micro-arm.tar.gz
+          tar -xzf micro-arm.tar.gz
+          cp micro-${MICRO_VER}/micro ../dist/micro-arm64
+          rm -rf micro-*
+
+          # 3. ripgrep (wyszukiwarka w Rust - musl)
+          RG_VER="16.0.0"
+          curl -sL "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VER}/ripgrep-${RG_VER}-x86_64-unknown-linux-musl.tar.gz" -o rg-x64.tar.gz
+          tar -xzf rg-x64.tar.gz
+          cp ripgrep-*/rg ../dist/rg-x86_64
+          rm -rf ripgrep-* rg-x64.tar.gz
+
+          curl -sL "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VER}/ripgrep-${RG_VER}-aarch64-unknown-linux-musl.tar.gz" -o rg-arm.tar.gz
+          tar -xzf rg-arm.tar.gz
+          cp ripgrep-*/rg ../dist/rg-arm64
+          rm -rf ripgrep-* rg-arm.tar.gz
+
+          cd ../dist
+          chmod +x *
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Upload binaries to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: binaries
+          name: "MUR Static Binaries (x86_64 & arm64)"
+          files: dist/*
