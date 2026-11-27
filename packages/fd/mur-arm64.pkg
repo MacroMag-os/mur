@@ -3,5 +3,5 @@ version=10.2.0
 arch=arm64
 license=MIT
 description=Simple, fast and user-friendly alternative to find
-source_archive=https://github.com/sharkdp/fd/releases/download/v10.2.0/fd-v10.2.0-aarch64-unknown-linux-musl.tar.gz
+source_archive=https://github.com/sharkdp/fd/releases/download/v10.2.0/fd-v10.2.0-aarch64-unknown-linux-gnu.tar.gz
 bin=fd
