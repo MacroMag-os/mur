@@ -1,0 +1,7 @@
+name=dbclient
+version=2026.94
+arch=x86_64
+license=MIT
+description=Lightweight standalone SSH client from Dropbear suite
+url=https://github.com/MacroMag-os/mur/releases/download/binaries/dbclient-x86_64
+bin=dbclient
